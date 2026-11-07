@@ -39,6 +39,101 @@ FootballArena is connected to a database where player information is stored.
 - FastAPI – Backend API
 - Database – Stores player information and application data
 - Axios – Communication between frontend and backend
+## 1. Clone the Repository
+
+```bash
+git clone <https://github.com/Basantakhanal/football-arena.git>
+cd CURAMIND
+```
+
+---
+
+# 2. Backend Setup
+
+Navigate to the backend:
+
+```powershell
+cd backend
+```
+
+Create a Python virtual environment:
+
+```powershell
+python -m venv venv
+```
+
+Activate the virtual environment:
+
+```powershell
+.\venv\Scripts\Activate.ps1
+```
+
+Upgrade pip:
+
+```powershell
+python -m pip install --upgrade pip
+```
+
+Install all backend dependencies:
+
+```powershell
+pip install -r requirements.txt
+```
+
+---
+
+
+# 4. Start the Backend
+
+From the `backend` directory, run:
+
+```powershell
+python app.py
+```
+
+
+# 5. Frontend Setup
+
+Open a **new terminal** while keeping the backend running.
+
+Navigate to the frontend:
+
+```powershell
+cd frontend
+```
+
+Install frontend dependencies:
+
+```powershell
+npm install
+```
+
+Start the development server:
+
+```powershell
+npm run dev
+```
+
+
+# ▶️ Running the Complete Project
+
+Both the backend and frontend must be running at the same time.
+
+### Terminal 1 — Backend
+
+```powershell
+cd football-arena\backend
+.\venv\Scripts\Activate.ps1
+pytjon app.py
+```
+
+### Terminal 2 — Frontend
+
+```powershell
+cd football-arena\frontend
+npm install
+npm run dev
+```
 
 ## 🔮 Future Plans
 
