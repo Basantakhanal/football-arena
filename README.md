@@ -124,7 +124,7 @@ Both the backend and frontend must be running at the same time.
 ```powershell
 cd football-arena\backend
 .\venv\Scripts\Activate.ps1
-pytjon app.py
+python app.py
 ```
 
 ### Terminal 2 — Frontend
