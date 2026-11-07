@@ -1,8 +1,8 @@
-
 import { Link, NavLink } from "react-router-dom";
 
 const LINKS = [
-  { to: "/", label: "Players", end: true },
+  { to: "/", label: "Overview", end: true },
+  { to: "/players", label: "Players" },
   { to: "/countries", label: "Countries" },
   { to: "/clubs", label: "Clubs" },
   { to: "/voting", label: "Voting" },

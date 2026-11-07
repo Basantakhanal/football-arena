@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 
 export const API_URL = "http://localhost:5000/api/players";
@@ -26,35 +25,45 @@ export const COUNTRY_SUGGESTIONS = Object.keys(ISO).map((c) =>
   c.replace(/\b\w/g, (l) => l.toUpperCase())
 );
 
-/* ---------- Normalize player data ---------- */
-export const normalizePlayer = (p, i = 0) => ({
-  id: p.id ?? p._id ?? `local-${i}`,
-  name: p.name ?? "Unknown",
-  club: p.club ?? "",
-  country: p.country ?? "",
-  league: p.league ?? "Other",
-  position: p.position ?? "",
+/* ---------- Robust Normalize Player Data ---------- */
+export const normalizePlayer = (p, i = 0) => {
+  if (!p) return {};
 
-  age: p.age !== null && p.age !== undefined && p.age !== ""
-    ? Number(p.age)
-    : null,
+  const name = p.name ?? p.player_name ?? "Unknown Player";
+  const club = p.club ?? p.club_name ?? "";
+  const country = p.country ?? p.country_name ?? "";
+  const position = p.position ?? "";
+  const league = p.league ?? "Other";
 
-  rating: p.rating !== null && p.rating !== undefined && p.rating !== ""
-    ? Number(p.rating)
-    : 0,
+  return {
+    ...p,
+    id: p.id ?? p._id ?? `local-${i}`,
+    name,
+    club,
+    country,
+    league,
+    position,
 
-  goals: Number(p.goals) || 0,
-  assists: Number(p.assists) || 0,
-  minutes: Number(p.minutes) || 0,
+    age: p.age !== null && p.age !== undefined && p.age !== ""
+      ? Number(p.age)
+      : null,
 
-  status: p.status ?? "Active",
+    rating: p.rating !== null && p.rating !== undefined && p.rating !== ""
+      ? Number(p.rating)
+      : 0,
 
-  // Player image
-  photo_url: p.photo_url ?? p.photo ?? p.image ?? p.profile_image ?? "",
+    goals: Number(p.goals) || 0,
+    assists: Number(p.assists) || 0,
+    minutes: Number(p.minutes) || 0,
 
-  club_logo: p.club_logo ?? "",
-  country_flag: p.country_flag ?? "",
-});
+    status: p.status ?? "Active",
+
+    // Image URL Normalization with Fallbacks for Supabase Backend fields
+    photo_url: p.photo_url || p.photo || p.image || p.profile_image || "",
+    club_logo: p.club_logo || p.logo_url || p.club_image || "",
+    country_flag: p.country_flag || p.flag_url || p.country_image || "",
+  };
+};
 
 /* ---------- Age categories ---------- */
 export const ageBucket = (age) => {
